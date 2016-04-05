@@ -42,4 +42,7 @@ dependencies {
     compile 'com.bluelinelabs:conductor:1.1.2'
     compile 'com.bluelinelabs:conductor-support:1.1.2'
     compile 'com.bluelinelabs:conductor-rxlifecycle:1.1.2'
+
+    compile 'com.jakewharton:butterknife:7.0.1'
+    kapt 'com.jakewharton:butterknife:7.0.1'
 }

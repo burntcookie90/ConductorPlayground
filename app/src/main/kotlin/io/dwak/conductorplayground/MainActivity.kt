@@ -2,6 +2,7 @@ package io.dwak.conductorplayground
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import butterknife.ButterKnife
 import com.bluelinelabs.conductor.Conductor
 import com.bluelinelabs.conductor.Router
 import io.dwak.conductorplayground.controller.HomeController
@@ -14,6 +15,7 @@ class MainActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    ButterKnife.setDebug(true)
     setContentView(R.layout.activity_main)
 
     router = Conductor.attachRouter(this, container, savedInstanceState).apply {
