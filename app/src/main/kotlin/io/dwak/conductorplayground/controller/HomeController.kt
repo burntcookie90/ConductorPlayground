@@ -6,13 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import com.bluelinelabs.conductor.rxlifecycle.RxController
-import com.bluelinelabs.conductor.rxlifecycle.RxControllerLifecycle
 import io.dwak.conductorplayground.R
-import io.dwak.conductorplayground.extension.bindView
 import kotlin.properties.Delegates
 
 class HomeController : RxController() {
@@ -21,11 +18,12 @@ class HomeController : RxController() {
     lifecycle().subscribe { Log.d("TAG", it.name) }
   }
   private var mainText: TextView by Delegates.notNull()
-  private val button: Button by bindView(R.id.button)
+  private var button: Button by Delegates.notNull()
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
     val view = inflater.inflate(R.layout.controller_home, container, false)
     mainText = view.findViewById(R.id.main_text) as TextView
+    button = view.findViewById(R.id.button) as Button
     return view
   }
 
