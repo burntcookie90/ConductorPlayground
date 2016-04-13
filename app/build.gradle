@@ -7,6 +7,7 @@ buildscript {
     }
 }
 
+apply plugin: 'com.squareup.sqldelight'
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -34,15 +35,31 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.2.1'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    compile 'com.bluelinelabs:conductor:1.1.2'
-    compile 'com.bluelinelabs:conductor-support:1.1.2'
-    compile 'com.bluelinelabs:conductor-rxlifecycle:1.1.2'
+    provided rootProject.ext.autoValue
+    kapt rootProject.ext.autoValue
+
+    compile rootProject.ext.appCompat
+    compile rootProject.ext.recyclerView
+
+    compile rootProject.ext.conductor
+    compile rootProject.ext.conductorSupport
+    compile rootProject.ext.conductorRxLifecycle
+
+    compile rootProject.ext.rxJava
+
+    compile rootProject.ext.sqlbrite
 
     compile 'com.jakewharton:butterknife:7.0.1'
     kapt 'com.jakewharton:butterknife:7.0.1'
+
+    compile rootProject.ext.dagger
+    kapt rootProject.ext.daggerCompiler
+
+    testCompile 'junit:junit:4.12'
+}
+
+kapt {
+    generateStubs = true
 }

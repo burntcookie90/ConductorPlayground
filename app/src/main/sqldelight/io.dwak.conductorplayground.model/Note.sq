@@ -1,0 +1,15 @@
+CREATE TABLE note (
+    _id LONG NOT NULL PRIMARY KEY AUTOINCREMENT,
+    title STRING NOT NULL,
+    content STRING,
+    creation_date LONG NOT NULL
+);
+
+select_all:
+SELECT *
+FROM note;
+
+select_by_id:
+SELECT *
+FROM note
+WHERE _id = ?;

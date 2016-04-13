@@ -7,8 +7,9 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.0.0-rc3'
+        classpath 'com.android.tools.build:gradle:2.0.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.squareup.sqldelight:gradle-plugin:0.2.2'
     }
 }
 
@@ -16,9 +17,31 @@ allprojects {
     repositories {
         jcenter()
         mavenCentral()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+    String supportVersion = "23.3.0"
+    String conductorVersion = "1.1.2"
+
+    autoValue = "com.google.auto.value:auto-value:1.2"
+
+    appCompat = "com.android.support:appcompat-v7:$supportVersion"
+
+    conductor = "com.bluelinelabs:conductor:$conductorVersion"
+    conductorSupport = "com.bluelinelabs:conductor-support:$conductorVersion"
+    conductorRxLifecycle = "com.bluelinelabs:conductor-rxlifecycle:$conductorVersion"
+
+    dagger = 'com.squareup.dagger:dagger:1.3.0-SNAPSHOT'
+    daggerCompiler = 'com.squareup.dagger:dagger-compiler:1.3.0-SNAPSHOT'
+
+    recyclerView = "com.android.support:recyclerview-v7:$supportVersion"
+    rxJava = "io.reactivex:rxjava:1.1.3"
+
+    sqlbrite = 'com.squareup.sqlbrite:sqlbrite:0.6.2'
 }
