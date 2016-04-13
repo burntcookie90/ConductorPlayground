@@ -12,14 +12,12 @@ class NoteData @Inject constructor(private val sqlLiteOpenHelper : NoteOpenHelpe
                                    private val scheduler : Scheduler) {
   private val db = sqlBrite.wrapDatabaseHelper(sqlLiteOpenHelper, scheduler)
 
-  fun notes() : Observable<Note> {
-    return db.createQuery(NoteModel.TABLE_NAME, NoteModel.SELECT_ALL)
-            .map { it.run() }
-            .map { Note.MAPPER.map(it) }
-  }
+  fun notes() = db.createQuery(NoteModel.TABLE_NAME, NoteModel.SELECT_ALL)
+          .map { it.run() }
+          .map { Note.MAPPER.map(it) }
 
-  fun add(note : Note) = db.insert(NoteModel.TABLE_NAME, Note.Companion.Marshal(note)
-          .asContentValues())
+  fun add(note : Note) = db.insert(NoteModel.TABLE_NAME,
+                                   Note.Companion.Marshal(note).asContentValues())
 
   fun remove(note : Note) = db.delete(NoteModel.TABLE_NAME, NoteModel.SELECT_BY_ID,
                                       note._id().toString())
